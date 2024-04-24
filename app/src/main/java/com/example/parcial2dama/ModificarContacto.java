@@ -2,6 +2,7 @@ package com.example.parcial2dama;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +30,7 @@ import java.util.Map;
 public class ModificarContacto extends AppCompatActivity {
     EditText nombre, telefono, genero;
     Button botonModificar, botonRegresar, botonEliminar;
-    String id_contacto, nombre2, telefono3, genero4;
+    String id_contacto1, nombre2, telefono3, genero4;
     Configuraciones objConfiguracion = new Configuraciones();
     String URL = objConfiguracion.urlWebServices;
     @Override
@@ -102,7 +103,8 @@ public class ModificarContacto extends AppCompatActivity {
                 protected Map<String,String> getParams() throws AuthFailureError {
                     Map<String,String> params = new HashMap<String,String>();
                     params.put("accion","modificar");
-                    params.put("id_contacto",id_contacto);
+                    Log.d("id_contacto", "Valor de id_contacto: " + id_contacto1);
+                    params.put("id_contacto",id_contacto1);
                     params.put("nombre",nombre.getText().toString());
                     params.put("telefono",telefono.getText().toString());
                     params.put("genero",genero.getText().toString());
@@ -151,7 +153,8 @@ public class ModificarContacto extends AppCompatActivity {
                 protected Map<String,String> getParams() throws AuthFailureError {
                     Map<String,String> params = new HashMap<String,String>();
                     params.put("accion","eliminar");
-                    params.put("id_contacto",id_contacto);
+                    Log.d("id_contacto", "Valor de id_contacto: " + id_contacto1);
+                    params.put("id_contacto",id_contacto1);
                     return params;
                 }
             };
@@ -168,10 +171,11 @@ public class ModificarContacto extends AppCompatActivity {
         Bundle valoresAdicionales = getIntent().getExtras();
         if(valoresAdicionales==null){
             Toast.makeText(ModificarContacto.this, "Debe enviar un ID de contacto", Toast.LENGTH_SHORT).show();
-            id_contacto = "";
+            id_contacto1 = "";
             regresar();
         }else{
-            id_contacto = valoresAdicionales.getString("id_contacto");
+            id_contacto1 = valoresAdicionales.getString("id_contacto");
+            Log.d("id_contacto", "Valor de id_contacto: " + id_contacto1);
             nombre2 = valoresAdicionales.getString("nombre");
             telefono3 = valoresAdicionales.getString("telefono");
             genero4 = valoresAdicionales.getString("genero");
@@ -184,9 +188,6 @@ public class ModificarContacto extends AppCompatActivity {
         nombre.setText(nombre2);
         telefono.setText(telefono3);
         genero.setText(genero4);
-        boolean s = id_contacto.isEmpty();
-        if (!s){
-            id_contacto = this.id_contacto;
-        }
+        Log.d("id_contacto", "Valor de id_contacto: " + id_contacto1);
     }
 }

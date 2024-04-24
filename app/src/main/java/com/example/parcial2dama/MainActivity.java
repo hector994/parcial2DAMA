@@ -2,6 +2,7 @@ package com.example.parcial2dama;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -145,7 +146,11 @@ public class MainActivity extends AppCompatActivity {
             JSONObject objJSON = null;
             try{
                 objJSON = arregloDatos.getJSONObject(position);
+                Log.d("id_contacto", "Valor de id_contacto: " + objJSON);
+
                 final String id_contacto = objJSON.getString("id_contacto");
+                Log.d("id_contacto", "Valor de id_contacto: " + id_contacto);
+                final String id_contacto2 = objJSON.getString("id_contacto");
                 final String nombre = objJSON.getString("nombre");
                 final String telefono = objJSON.getString("telefono");
                 final String genero = objJSON.getString("genero");
@@ -158,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent ventanaModificar = new Intent(MainActivity.this, ModificarContacto.class);
                         ventanaModificar.putExtra("id_contacto", id_contacto);
+                        ventanaModificar.putExtra("id_contacto", id_contacto2);
+                        Log.d("id_contacto", "Valor de id_contacto: " + id_contacto);
                         ventanaModificar.putExtra("nombre", nombre);
                         ventanaModificar.putExtra("telefono", telefono);
                         ventanaModificar.putExtra("genero", genero);
