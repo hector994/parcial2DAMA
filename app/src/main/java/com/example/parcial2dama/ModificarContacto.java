@@ -26,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ModificarContacto extends AppCompatActivity {
     EditText nombre, telefono, genero;
@@ -43,6 +44,8 @@ public class ModificarContacto extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.baseline_book_24);
 
         nombre = findViewById(R.id.txtNombreCompletoEditar);
         telefono = findViewById(R.id.txtTelefonoEditar);
