@@ -33,7 +33,7 @@ android {
 
 dependencies {
 
-    //implementation(volley)
+    //implementation(libs.volley)
     implementation("com.android.volley:volley:1.2.0")
     implementation(libs.appcompat)
     implementation(libs.material)
